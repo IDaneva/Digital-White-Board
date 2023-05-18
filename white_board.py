@@ -26,7 +26,8 @@ def locate_xy(work):
 # drawing a line depending on the position of the mouse and pointer direction
 def add_line(work):
     global current_x, current_y
-    canvas.create_line((current_x, current_y, work.x, work.y), width=get_current_value(), fill=color)
+    canvas.create_line((current_x, current_y, work.x, work.y), width=get_current_value(), fill=color,
+                       capstyle=ROUND, smooth=TRUE)
     current_x = work.x
     current_y = work.y
 
@@ -41,6 +42,11 @@ def show_color(new_color):
 def new_canvas():
     canvas.delete("all")
     display_palette()
+    # global current_x, current_y
+    # canvas.create_line((current_x, current_y, work.x, work.y), width=get_current_value(), fill="white",
+    #                    capstyle=ROUND, smooth=TRUE)
+    # current_x = work.x
+    # current_y = work.y
 
 
 # set an icon for the window
@@ -89,9 +95,12 @@ def display_palette():
 display_palette()
 
 
-# set the eraser for the white board
+# set the eraser for the whole white board aka "deleter of everything"
+deleter = PhotoImage(file="trash can.png")
+Button(root, image=deleter, bg="#f2f3f5", command=new_canvas).place(x=25, y=370)
+
 eraser = PhotoImage(file="cartoon-eraser-icon-png.png")
-Button(root, image=eraser, bg="#f2f3f5", command=new_canvas).place(x=20, y=400)
+Button(root, image=eraser, bg="#f2f3f5", command=new_canvas).place(x=22, y=425)
 
 # set the canvas place for drawing
 canvas = Canvas(root, width=930, height=500, bg="white", cursor="hand2")
