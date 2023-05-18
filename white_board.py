@@ -126,7 +126,12 @@ value_label.place(x=27, y=550)
 
 canvas.bind("<Button-1>", locate_xy)
 canvas.bind("<B1-Motion>", add_line)
+canvas.bind("<<Button-2>", )
 
 
 # make the window show up
 root.mainloop()
+
+
+# TODO: "make eraser function for the eraser button
+#  currently the trash bin and the eraser delete everything on the board so there must be a new function for the eraser"
