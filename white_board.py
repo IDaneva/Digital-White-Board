@@ -26,7 +26,7 @@ def locate_xy(work):
 # drawing a line depending on the position of the mouse and pointer direction
 def add_line(work):
     global current_x, current_y
-    canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=color)
+    canvas.create_line((current_x, current_y, work.x, work.y), width=get_current_value(), fill=color)
     current_x = work.x
     current_y = work.y
 
@@ -97,8 +97,24 @@ Button(root, image=eraser, bg="#f2f3f5", command=new_canvas).place(x=20, y=400)
 canvas = Canvas(root, width=930, height=500, bg="white", cursor="hand2")
 canvas.place(x=100, y=10)
 
+# set a slider for the size of the cursor and get the value of it
+current_value = tk.DoubleVar()
 
 
+def get_current_value():
+    return f"{(current_value.get()):.2f}"
+
+
+def slider_changed(event):
+    value_label.configure(text=get_current_value())
+
+
+slider = ttk.Scale(root, from_=0, to=10, orient="horizontal", command=slider_changed, variable=current_value)
+slider.place(x=30, y=530)
+
+# set a label for the value of the chosen size from the slider
+value_label = ttk.Label(root, text=get_current_value())
+value_label.place(x=27, y=550)
 
 canvas.bind("<Button-1>", locate_xy)
 canvas.bind("<B1-Motion>", add_line)
