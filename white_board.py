@@ -135,3 +135,5 @@ root.mainloop()
 
 # TODO: "make eraser function for the eraser button
 #  currently the trash bin and the eraser delete everything on the board so there must be a new function for the eraser"
+
+#TODO: "make a readme file for github"
